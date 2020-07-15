@@ -38,7 +38,8 @@
         <ul>
             <li>
                 <ul>
-                    <li id="resultat" style="text-align: right;">123</li>
+                    <li id="resultat" style="text-align: right;">0</li>
+
                 </ul>
             </li>
             <li>
@@ -89,7 +90,9 @@
                     </li>
                 </ul>
                 <ul class="row">
-                    <li></li>
+                    <li>
+                        <button class="btn-reset">CE</button>
+                    </li>
                     <li>
                         <button class="btn-val" >0</button>
                     </li>
@@ -103,19 +106,101 @@
             </li>
         </ul>
     </div>
+    <div>
+        <button onclick="testStart();">test</button>
+        <div id="res_test"></div>
+    </div>
+
 
 <script>
-    $(document).ready(function(){
-        console.log("test");
-        $(".btn-val").click(function(){
-            var btnVal = $(this).html();
-            $("#resultat").html(btnVal);
-        })
+$(document).ready(function(){
+    var resetRes = 0 ; // if true next btn-val will reset current #resultat val
+    var savedVal = 0 ;       
+    var oldVal   = 0 ;
+    var newVal   = 0 ;
+    var spe      = null ; 
+    var resultat = null ;
+    $("button").click(function(){
+        if($(this).hasClass("btn-val")){
+            oldVal = Number($("#resultat").html());
+            if(resetRes == true ){
+                savedVal = resultat;
+                oldVal = 0;
+            }
+            newVal = oldVal*10+ Number($(this).html());
 
+        }else if($(this).hasClass("btn-spe")){
+            console.log($(this).html());
 
+            if(spe == null ){
+                spe = $(this).html();
+                oldVal = newVal;
+                console.log(spe);
+
+            }else{
+                switch (spe) {
+                    case '-':
+                        resultat = sub(oldVal , newVal);
+                        break;
+                        
+                    case '+':
+                        resultat = add(oldVal , newVal);
+                        break;
+        
+                    case '/':
+                        resultat = div(oldVal , newVal);
+                        break;
+        
+                    case '*':
+                        resultat = mul(oldVal , newVal);
+                        break;
+                    }
+            }
+                    
+        }else if($(this).hasClass("btn-reset")){
+            savedVal = 0 ;       
+            oldVal   = 0 ;
+            newVal   = 0 ;
+            spe      = null ; 
+            resultat = null ;
+        }
+
+        $("#resultat").html(newVal);
+        if(resultat != null){
+            $("#resultat").html(resultat);
+        }
+        
     })
+})
 
 </script>
+<script>
+function add (num1, num2 ){
+    return num1+ num2;
+}
+function sub (num1, num2 ){
+    return num1- num2;
+}
+function mul (num1, num2 ){
+    return num1* num2;
+}
+function div (num1, num2 ){
+    return num1/ num2;
+}
+</script>
+<script>
+    function rand(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
 
+    function testStart(){
+        var a = rand(10);
+        var b = rand(10);
+        console.log(a + ' + ' + b + ' = ' + add(a,b));
+        console.log(a + ' - ' + b + ' = ' + sub(a,b));
+        console.log(a + ' * ' + b + ' = ' + mul(a,b));
+        console.log(a + ' / ' + b + ' = ' + div(a,b));
+    }
+</script>
 </body>
 </html>
