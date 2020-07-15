@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice</title>
+    <style>
+        body,button{
+            font-size: 50px ;
+        }
+        .calculatrice{
+            display: block;
+            position: relative;
+            width: 700px;
+        }
+        ul{
+            list-style: none;
+        }
+
+        ul.row{
+            display: flex;
+            flex-direction: row;
+        }
+        ul.row>li{
+            margin: 2px;
+            width: 80px;
+        }
+        button{
+            width: inherit;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculatrice">
+        <ul>
+            <li>
+                <ul>
+                    <li id="resultat" style="text-align: right;">123</li>
+                </ul>
+            </li>
+            <li>
+                <ul class="row">
+                    <li>
+                        <button class="btn-val">7</button>
+                    </li>
+                    <li>
+                        <button class="btn-val" >8</button>
+                    </li>
+                    <li>
+                        <button class="btn-val" >9</button>
+                    </li>
+                    <li>
+                        <button class="btn-spe" >/</button>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul class="row">
+                    <li>
+                        <button class="btn-val" >4</button>
+                    </li>
+                    <li>
+                        <button class="btn-val" >5</button>
+                    </li>
+                    <li>
+                        <button class="btn-val" >6</button>
+                    </li>
+                    <li>
+                        <button class="btn-spe" >*</button>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <ul class="row">
+                    <li>
+                        <button class="btn-val" >1</button>
+                    </li>
+                    <li>
+                        <button class="btn-val" >2</button>
+                    </li>
+                    <li>
+                        <button class="btn-val" >3</button>
+                    </li>
+                    <li>
+                        <button class="btn-spe" >-</button>
+                    </li>
+                </ul>
+                <ul class="row">
+                    <li></li>
+                    <li>
+                        <button class="btn-val" >0</button>
+                    </li>
+                    <li>
+                        <button class="btn-spe" >=</button>
+                    </li>
+                    <li>
+                        <button class="btn-spe" >+</button>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+<script>
+    $(document).ready(function(){
+        console.log("test");
+        $(".btn-val").click(function(){
+            var btnVal = $(this).html();
+            $("#resultat").html(btnVal);
+        })
+
+
+    })
+
+</script>
+
+</body>
+</html>
